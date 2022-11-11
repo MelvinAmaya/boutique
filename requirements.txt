@@ -1,0 +1,6 @@
+Django == 3.1.2
+pillow
+#pugin para editar el admin de django
+django-admin-interface
+#plugin para darle estilo al form de contactos
+django-crispy-forms
