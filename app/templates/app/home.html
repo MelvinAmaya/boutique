@@ -14,8 +14,8 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="{% static 'app/img/favicon.png'%}" rel="icon">
-  <link href="{% static 'app/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+  <link href="{% static 'app/img/logo.png'%}" rel="icon">
+  <link href="{% static 'app/img/logo.png'%}" rel="apple-touch-icon">
 
   <!-- Bootstrap CSS File -->
   <link href="{% static 'app/lib/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
@@ -102,6 +102,10 @@
           <li class="nav-item">
             <a class="nav-link js-scroll" href="#contact">Contacto</a>
           </li>
+        </li>
+        <li class="nav-item">
+         <a class="nav-link js-scroll" href="{% url 'listar' %}">Admin</a>
+       </li>
            <li class="nav-item">
             <a class="nav-link js-scroll" href="#">Iniciar</a>
           </li>
@@ -147,7 +151,7 @@
     <div class="productos">
 
       <!--Creamos un for para recorrer la base de datos y mostrar los productos registrados-->
-      {% for p in productos %}
+      {% for p in entity %}
         <div class="producto">
 
             <div class="contenedor_producto">
@@ -169,6 +173,12 @@
         </div>
       {% endfor %}
 
+      
+
+    </div>
+
+    <div>
+      {% include 'app/paginator.html' %}
     </div>
 
   </section>
@@ -282,7 +292,7 @@
               
           
                        <div class="col-md-12">
-                          <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                          <input type="submit" class="button button-a button-big button-rouded" value="Send Message">
                        </div>
                       
                     </form>
@@ -311,10 +321,9 @@
                   </div>
                   <div class="socials">
                     <ul>
-                      <li><a href=""><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
-                      <li><a href=""><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li>
-                      <li><a href=""><span class="ico-circle"><i class="ion-social-twitter"></i></span></a></li>
-                      <li><a href=""><span class="ico-circle"><i class="ion-social-pinterest"></i></span></a></li>
+                      <li><a target="_blank" href="https://www.facebook.com/manquito.cod"><span class="ico-circle"><i class="ion-social-facebook"></i></span></a></li>
+                      <li><a target="_blank" href="https://instagram.com/ugb004?igshid=ZDdkNTZiNTM="><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li>
+                      <li><a target="_blank" href="https://twitter.com/UGB0023?t=Mb-L280DQsIhbgJo1Z2gng&s=08"><span class="ico-circle"><i class="ion-social-twitter"></i></span></a></li>
                     </ul>
                   </div>
                 </div>
@@ -366,6 +375,24 @@
 
   <!-- Template Main Javascript File -->
   <script src="{% static 'app/js/main.js'%}"></script>
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  {% if messages %}
+
+        {% for m in messages %}
+
+            <script>
+                swal.fire({
+                    "title": "Felicitaciones",
+                    "text": "{{m}}",
+                    "icon": "success"
+                })
+            </script>
+
+        {% endfor %}
+
+    {% endif %}
 
 </body>
 </html>

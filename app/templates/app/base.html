@@ -13,15 +13,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
     <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+    <link href="{% static 'app/img/logo.png'%}" rel="icon">
     
 </head>
 <body>
 
     
     <header id="header">
-        <img class="menu" src="img/menuiconwhite.png" alt="menu" id="menu">
+        <img class="menu" src="{% static 'app/img/logo.png'%}" alt="menu" id="menu">
+        
         <div class="contenedor_logo">
-            <img  class="logo"  src="img/tecnomarketpngicono.png" alt="logo">
+            <img  class="logo"  src="{% static 'app/img/logo.png'%}" width="100" height="100"  alt="logo">
         </div>
 
         <div>
@@ -29,12 +31,20 @@
             <nav id="nrav">
                 <ul>
                     <li>
-                        <a href="{% url 'listar' %}"> Inicio </a>
+                        <a href="{% url 'home' %}">Pagina Productos</a>
                     </li>
                     <li>
-                        <a href="contacto.html">Contacto</a>
+                        <a href="{% url 'listar' %}"> LISTAR </a>
                     </li>
-                    <li><a href="galeria.html">Galería</a></li>
+                    <li>
+                        <a href="{% url 'agregar' %}">AGREGAR</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'marca' %}">Agregar Marca</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'list_mensaje' %}">Mensajes</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -44,6 +54,8 @@
 
     <div id="contenido">
 
+        
+
       {% block contenido %}
       
   
@@ -52,35 +64,27 @@
        
     </div>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <footer>
-        <div class="marcas">
-            <img src="img/footer/apple.png" alt="apple">
-            <img src="img/footer/lenovo.png" alt="lenovo">
-            <img src="img/footer/microsoft.png" alt="microsoft">
-            <img src="img/footer/samsung.png" alt="samsung">
-            <img src="img/footer/xiaomi.png" alt="xiaomi">
-        </div>
-        <div class="logo_footer">
-            <img src="img/tecnomarketpngicono.png" alt="logo">
-        </div>
-    </footer>
+    {% if messages %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script src="{% static 'app/js/menu.js' %}"></script>
+        {% for m in messages %}
 
-    <script>
-        $(document).ready(function() {
-          $('.slider').bxSlider({
-              mode: 'fade',//horizontal, vertical, fade
-              auto: true,
-              pause: 2000
-          });
-        });
-    </script>
+            <script>
+                swal.fire({
+                    "title": "Felicitaciones",
+                    "text": "{{m}}",
+                    "icon": "success"
+                })
+            </script>
 
+        {% endfor %}
 
+    {% endif %}
+
+    {% block js %}
+
+    {% endblock %}
 
 </body>
 </html>

@@ -1,28 +1,34 @@
 {% extends 'app/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block contenido %}
-
-<div class="card">
-    <div class="card-body">
-
-
+<br><br>
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3">
-                <form action="" method="post">
+                <div class="card">
+                    <h2 class="text-center">Nuevo Producto</h2>
+                    <hr>
+        
+                    <div class="card-body">
+                        <form action="" method="post" enctype="multipart/form-data">
 
-                        {% csrf_token %}
-                        {{ form }}
+                                {% csrf_token %}
+                                {{ form | crispy }}
+                                
 
-                        <div class="d-flex justify-content-center">
-                            <input type="reset" value="Cancelar" class="btn btn-secondary">
-                            <input type="submit" value="Guardar" class="btn btn-primary">
-                        </div>
-                    
+                                <div class="d-flex justify-content-end">
+                                    <br>
+                                    <input type="reset" value="Cancelar" class="btn btn-secondary">
+                                    &nbsp;
+                                    <input type="submit" value="Guardar" class="btn btn-primary">
+                                </div>
+                            
 
-                </form>
+                        </form>
+                        {{mensaje}}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 {% endblock %}

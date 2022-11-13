@@ -1,27 +1,72 @@
 {% extends 'app/base.html' %}
 
+{% block js %}
+<script>
+    <!--/ creamos una funcion que obtiene un id y un sweet alert/-->
+    function eliminarProducto(id){
+        
+        swal.fire({
+            "title": "¿Seguro de eliminar el elemento?",
+            "text": "Se eliminara permanentemente y no se puede deshacer",
+            "icon": "question",
+            "showCancelButton": true,
+            "cancelButtonText": "No, Cancelar",
+            "confirmButtonText": "Si, Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor": "#dc3545"
+
+        })
+        
+        .then(function(result) {
+            if(result.isConfirmed){
+                window.location.href = "/eliminar/"+id+"/"
+            }
+        })
+    }
+    
+</script>
+{% endblock %}
+
+{% load humanize %}
+
 {% block contenido %}
 
+<br><br>
 <div class="card">
     <div class="card-body">
+        <h2 class="text-center">Lastado de Productos.</h2>
+        <hr>
 
+        <table class="table table-striped table-hover table.responsive-sm">
+            <tr class="text-center">
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Marca</th>
+                <th>Opciones</th>
+            </tr>
+            {% for p in entity %}
+        
+            <tr class="text-center">
+                <td>{{ p.nombreProducto | title }}</td>
+                <td>{{ p.precio | intcomma }}</td>
+                <td>{{ p.stock | intcomma }}</td>
+                <td>{{ p.nombreMarca | title }}</td>
+                <td>
+                    <a href="{% url 'modificar' p.id %}" class="btn btn-info btn-sm">Modificar</a>
+                    &nbsp;
+                    <!--/ llamamos la funcion y le pasamos el id/-->
+                    <a href="#" onclick="eliminarProducto({{p.id}})" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </table>
 
-        <div class="row">
-            <div class="col-12 col-md-6 offset-md-3">
-                <form action="" method="post">
-
-                        {% csrf_token %}
-                        {{ form }}
-
-                        <div class="d-flex justify-content-center">
-                            <input type="reset" value="Cancelar" class="btn btn-secondary">
-                            <input type="submit" value="Guardar" class="btn btn-primary">
-                        </div>
-                    
-
-                </form>
-            </div>
+        <div>
+            {% include 'app/paginator.html' %}
         </div>
+        
     </div>
 </div>
 

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3">
                 <div class="card">
-                    <h2 class="text-center">Modificar Producto</h2>
+                    <h2 class="text-center">Nueva Marca</h2>
                     <hr>
         
                     <div class="card-body">
@@ -15,12 +15,13 @@
                                 {% csrf_token %}
                                 {{ form | crispy }}
                                 
+                                <br>
 
                                 <div class="d-flex justify-content-end">
                                     <br>
                                     <input type="reset" value="Cancelar" class="btn btn-secondary">
                                     &nbsp;
-                                    <input type="submit" value="Editar" class="btn btn-primary">
+                                    <input type="submit" value="Guardar" class="btn btn-primary">
                                 </div>
                             
 

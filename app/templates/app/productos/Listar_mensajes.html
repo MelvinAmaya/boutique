@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block contenido %}
+
+<br><br>
+<div class="card">
+    <div class="card-body">
+        <h2 class="text-center">Lastado de Mensajes</h2>
+        <hr>
+
+        <table class="table table-striped table-hover table.responsive-sm">
+            <tr class="text-center">
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Opciones</th>
+            </tr>
+            {% for m in entity %}
+        
+            <tr class="text-center">
+                <td>{{ m.nombre | title }}</td>
+                <td>{{ m.correo | intcomma }}</td>
+                <td>
+                    <a href="{% url 'see_mesaje' m.id %}" class="btn btn-info btn-sm">Ver</a>
+                    &nbsp;
+                    <a href="{% url 'delate_mesaje' m.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+
+        <div>
+            {% include 'app/paginator.html' %}
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
