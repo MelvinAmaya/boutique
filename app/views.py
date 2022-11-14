@@ -27,3 +27,6 @@ def listar(request):
 def agregar_producto(request):
     return render(request,'app/productos/agregar.html')
 
+def login(request):
+    return render(request,'app/registros/Login.html')
+
