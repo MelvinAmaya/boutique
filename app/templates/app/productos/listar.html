@@ -53,10 +53,15 @@
                 <td>{{ p.stock | intcomma }}</td>
                 <td>{{ p.nombreMarca | title }}</td>
                 <td>
+                    {% if perms.app.change_producto %}
                     <a href="{% url 'modificar' p.id %}" class="btn btn-info btn-sm">Modificar</a>
                     &nbsp;
+                    {% endif %}
+
+                    {% if perms.app.delate_producto %}
                     <!--/ llamamos la funcion y le pasamos el id/-->
                     <a href="#" onclick="eliminarProducto({{p.id}})" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
+    #Importamos los modulos de autenticacion predeterminados de django
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 #

@@ -21,9 +21,13 @@
                 <td>{{ m.nombre | title }}</td>
                 <td>{{ m.correo | intcomma }}</td>
                 <td>
+                    {% if perms.app.view_contacto %}
                     <a href="{% url 'see_mesaje' m.id %}" class="btn btn-info btn-sm">Ver</a>
                     &nbsp;
+                    {% endif %}
+                    {% if perms.app.delate_contacto %}
                     <a href="{% url 'delate_mesaje' m.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

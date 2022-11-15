@@ -103,15 +103,27 @@
             <a class="nav-link js-scroll" href="#contact">Contacto</a>
           </li>
         </li>
+        {% if perms.app %}
         <li class="nav-item">
-         <a class="nav-link js-scroll" href="{% url 'listar' %}">Admin</a>
+         <a class="nav-link js-scroll" href="{% url 'administrador' %}">Admin</a>
        </li>
-           <li class="nav-item">
-            <a class="nav-link js-scroll" href="#">Iniciar</a>
-          </li>
-           <li class="nav-item">
-            <a class="nav-link js-scroll" href="#">Registrarse</a>
-          </li>
+       {% endif %}
+
+       {% if user.is_authenticated %}
+       <li class="nav-item">
+        <a class="nav-link js-scroll" href="{% url 'logout' %}">Salir</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link js-scroll" href="#">@{{user.username}}</a>
+      </li>
+
+       {% else %}
+       <li class="nav-item">
+        <a class="nav-link js-scroll" href="{% url 'login' %}">Ingresar</a>
+      </li>
+       {% endif %}
+          
         </ul>
       </div>
     </div>

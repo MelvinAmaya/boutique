@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block contenido %}
+<html>
+  <head>
+    
+    <style>
+      .img-container {
+        text-align: center;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <br><br><br><br><br>
+    <span class="img-container"> <!-- Inline parent element -->
+      <img src="{% static 'app/img/logo.png'%}" alt="logo">
+    </span>
+  </body>
+</html>
+{% endblock %}

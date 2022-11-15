@@ -31,20 +31,34 @@
             <nav id="nrav">
                 <ul>
                     <li>
+                        <a href="{% url 'administrador' %}">Home</a>
+                    </li>
+                    <li>
                         <a href="{% url 'home' %}">Pagina Productos</a>
                     </li>
+                    {% if perms.app.view_producto %}
                     <li>
                         <a href="{% url 'listar' %}"> LISTAR </a>
                     </li>
+                    {% endif %}
+
+                    {% if perms.app.add_producto %}
                     <li>
                         <a href="{% url 'agregar' %}">AGREGAR</a>
                     </li>
+                    {% endif %}
+                    {% if perms.app.add_marca %}
                     <li>
                         <a href="{% url 'marca' %}">Agregar Marca</a>
                     </li>
+                    {% endif %}
+                    {% if perms.app.view_contacto %}
                     <li>
                         <a href="{% url 'list_mensaje' %}">Mensajes</a>
                     </li>
+                    {% endif %}
+
+                   
                 </ul>
             </nav>
 
@@ -53,6 +67,17 @@
     </header>
 
     <div id="contenido">
+        {% if user.is_authenticated %}
+        <div>
+
+            <label>Usuario: @{{user.username}}</label>
+
+        </div>
+                
+        
+            
+        
+        {% endif %}
 
         
 

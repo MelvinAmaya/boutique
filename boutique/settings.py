@@ -31,6 +31,12 @@ ALLOWED_HOSTS = []
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 
+#--------- Variables para que el login redirecciones---------------
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -136,6 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+#---------------Importacines imagen--------------------------
 import os
 #Creamos esta bariables para poder guardar imagenes
 MEDIA_URL = '/media/'
