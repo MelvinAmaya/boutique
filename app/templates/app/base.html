@@ -8,69 +8,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoutiqueUGB Admin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/estilo_base.css' %}">
     <link href="{% static 'app/img/logo.png'%}" rel="icon">
     
 </head>
 <body>
 
     
-    <header id="header">
-        <img class="menu" src="{% static 'app/img/logo.png'%}" alt="menu" id="menu">
-        
-        <div class="contenedor_logo">
-            <img  class="logo"  src="{% static 'app/img/logo.png'%}" width="100" height="100"  alt="logo">
+    <header class="header">
+        <div class="logo">
+            <img  src="{% static 'app/img/render_navbar.png'%}" alt="Logo de la marca">
         </div>
-
-        <div>
+        <nav>
+           <ul class="nav-links">
+            <li>
+                <a href="{% url 'administrador' %}">Home</a>
+            </li>
             
-            <nav id="nrav">
-                <ul>
-                    <li>
-                        <a href="{% url 'administrador' %}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'home' %}">Pagina Productos</a>
-                    </li>
-                    {% if perms.app.view_producto %}
-                    <li>
-                        <a href="{% url 'listar' %}"> LISTAR </a>
-                    </li>
-                    {% endif %}
+            {% if perms.app.view_producto %}
+            <li>
+                <a href="{% url 'listar' %}"> LISTAR </a>
+            </li>
+            {% endif %}
 
-                    {% if perms.app.add_producto %}
-                    <li>
-                        <a href="{% url 'agregar' %}">AGREGAR</a>
-                    </li>
-                    {% endif %}
-                    {% if perms.app.add_marca %}
-                    <li>
-                        <a href="{% url 'marca' %}">Agregar Marca</a>
-                    </li>
-                    {% endif %}
-                    {% if perms.app.view_contacto %}
-                    <li>
-                        <a href="{% url 'list_mensaje' %}">Mensajes</a>
-                    </li>
-                    {% endif %}
+            {% if perms.app.add_producto %}
+            <li>
+                <a href="{% url 'agregar' %}">AGREGAR</a>
+            </li>
+            {% endif %}
+            {% if perms.app.add_marca %}
+            <li>
+                <a href="{% url 'marca' %}">Agregar Marca</a>
+            </li>
+            {% endif %}
+            {% if perms.app.view_contacto %}
+            <li>
+                <a href="{% url 'list_mensaje' %}">Mensajes</a>
+            </li>
+            {% endif %}
 
-                   
-                </ul>
-            </nav>
-
-        </div>
-
+            {% if user.is_authenticated %}
+            <li >
+                <a href="{% url 'logout' %}">Salir</a>
+            </li>
+            {% endif %}
+           </ul>            
+        </nav>
+        <a class="btn" href="{% url 'home' %}"><button>Pagina Productos</button></a>
     </header>
 
-    <div id="contenido">
+    <div id="contenido" >
         {% if user.is_authenticated %}
-        <div>
+        <div style="color: #000;">
 
-            <label>Usuario: @{{user.username}}</label>
+            <h3 color >Usuario: @{{user.username}}</h3>
 
         </div>
                 

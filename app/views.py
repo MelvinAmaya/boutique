@@ -16,7 +16,7 @@ def home(request):
     
     page = request.GET.get('page',1)
     try:
-        paginator = Paginator(productos,12)
+        paginator = Paginator(productos,8)
         productos = paginator.page(page)
 
     except:
@@ -124,7 +124,7 @@ def marca(request):
         if formulario.is_valid():
             formulario.save()
             #enviamos un mensaje
-            data["mensaje"] = "mensaje enviado."
+            messages.success(request,"Se guardo la marca exitosamente.")
             #sino 
         else:
             #renviamos el formulario

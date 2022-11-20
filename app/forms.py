@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contacto,Producto,Marca,Contacto
+from .models import Contacto,Producto,Marca
 from django.contrib.auth.models import User
 
 from django.contrib.auth.forms import UserCreationForm
