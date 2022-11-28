@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import permission_required
 
 def home(request):
     #Hacemos las consultas y lo almacenamos en una lista
-    productos = Producto.objects.all()
+    productos = Producto.objects.all().order_by('nombreMarca')
 
     
     page = request.GET.get('page',1)
