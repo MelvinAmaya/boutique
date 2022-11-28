@@ -12,6 +12,6 @@ class TestModels(TestCase):
             precio=20,
             descripcion="es una camisa muy grande",
             stock=123,
-            nombreMarca= marca,
+            nombreMarca=marca,
             
         )
